@@ -199,6 +199,7 @@ export default function App() {
             <Post
               key={id}
               postId={id}
+              user={user}
               username={post.username}
               caption={post.caption}
               imgUrl={post.imgUrl}
@@ -211,7 +212,7 @@ export default function App() {
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
-        <h3>login to upload</h3>
+        <h3 style={{textAlign:"center"}}>login to upload</h3>
       )}
     </div>
   );

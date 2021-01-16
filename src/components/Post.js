@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { db } from "../firebase.config";
 import "./css/post.css";
 import Avatar from "@material-ui/core/Avatar";
+import firebase from 'firebase';
 
-export default function Post({ username, caption, imgUrl, postId }) {
+export default function Post({ user, username, caption, imgUrl, postId }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState();
 
@@ -12,6 +13,7 @@ export default function Post({ username, caption, imgUrl, postId }) {
       db.collection("posts")
         .doc(postId)
         .collection("comments")
+		.orderBy("timestamp","desc")
         .onSnapshot((snapshot) =>
           setComments(snapshot.docs.map((doc) => doc.data()))
         );
@@ -20,6 +22,12 @@ export default function Post({ username, caption, imgUrl, postId }) {
 
   const postComment = (e) => {
     e.preventDefault();
+    db.collection("posts").doc(postId).collection("comments").add({
+        username: user.displayName,
+        text: comment,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    setComment("");
   };
 
   return (
@@ -39,17 +47,21 @@ export default function Post({ username, caption, imgUrl, postId }) {
           </p>
         ))}
       </div>
-      <form className="comment-form">
-        <input
-          placeholder="add a comment..."
-          type="text"
-          value={comment}
-          onChange={(e) => setComments(e.target.valu)}
-        />
-        <button type="submit" disabled={!comment} onClick={postComment}>
-          post
-        </button>
-      </form>
+	  {
+		 user && (
+		  <form className="comment-form">
+			<input
+			  placeholder="add a comment..."
+			  type="text"
+			  value={comment}
+			  onChange={(e) => setComment(e.target.value)}
+			/>
+			<button type="submit" disabled={!comment} onClick={postComment}>
+			  Post
+			</button>
+		  </form>
+		)
+	  }
     </div>
   );
 }
