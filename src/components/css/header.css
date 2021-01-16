@@ -1,0 +1,63 @@
+.app-header {
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+  object-fit: contain;
+  display: flex;
+  justify-content: space-between;
+}
+.header-search {
+  position: relative;
+  width: 200px;
+  text-align: center;
+}
+.header-search input {
+  height: 100%;
+  width: 220px;
+  outline: none;
+  border-radius: 3px;
+  border: 2px solid rgb(196, 191, 191);
+  background-color: #fafafa;
+  padding-left: 25px;
+}
+.header-search input::placeholder {
+  color: rgb(128, 125, 125);
+}
+.header-search span {
+  color: rgb(128, 125, 125);
+  position: absolute;
+  top: 9px;
+  left: 5px;
+  width: 25px;
+}
+
+.header-features {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+.header-features span {
+  margin: 0 7px;
+  cursor: pointer;
+}
+.signup-form center img {
+  object-fit: contain;
+}
+.signup-form center {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container {
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 730px) {
+  .header-search {
+    display: none;
+  }
+  .header-features span {
+    margin: 0 5px;
+  }
+}

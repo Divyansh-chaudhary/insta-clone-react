@@ -1,0 +1,3 @@
+create navbar with logo sign up button then create post component with profile avatar username image and caption create database on firebase add it to project create modal for sign up allow user to create useraccount with email and password also set username of current user if it is not set logout btn and feature if user is sign in then sign in sign up btn and modal for both with features
+
+create image upload component with caption, upload input upload btn progress bar 

@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app {
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+.app_posts {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+.app-posts-right {
+  margin-left: 20px;
+}
+@media screen and (max-width: 730px) {
+  .app_posts {
+    align-items: center;
+    flex-direction: column;
+  }
+}
